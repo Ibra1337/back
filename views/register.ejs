@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+<body>
+
+    <div class="loginForm">
+        <div class="baner" id="baner" name="baner">
+            <h1>Login Simulator</h1>
+            <h2>The Best Login Expirience you will ever have</h2>
+            <br>
+            
+            <form action="/register" method="post">
+
+                <label for="name">Name:</label>
+                <br>
+                <input type="text" id="name" name="name" required>
+    
+                <br>
+                <br>
+
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" id="email" name="email" required>
+                
+                <br>
+                <br>
+                <%= typeof msg !== 'undefined' ? msg : '' %>
+                <label for="password">Password:</label>
+                <br>
+                <input type="password" id="password" name="password" required>
+    
+                <br>
+                <br>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <br>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+                
+                <br>
+                <br>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+    </div>
+    
+</body>
+</html> 

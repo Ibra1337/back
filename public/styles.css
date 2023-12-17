@@ -1,0 +1,16 @@
+
+body {
+    background-color: black;
+}
+
+#baner {
+    margin-top: 5%;
+    color: greenyellow;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
