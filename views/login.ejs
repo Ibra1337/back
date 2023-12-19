@@ -7,14 +7,25 @@
 
 </head>
 <body>
-
+    <div class="loginForm">
         <div class="baner" id="baner" name="baner">
             <h1>Login </h1>
             <h2>The Best Login Expirience you will ever have</h2>
             <br>
-            
+                        
+            <form action="/login" method="post">
+                <label for="name">Name:</label>
+                <br>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <br>
+                <label for="password">Password:</label>
+                <br>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button type="submit"> submit </button>
         </div>
-    
+    </div>
     
 </body>
 </html> 
