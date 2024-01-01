@@ -14,3 +14,44 @@ body {
     text-align: center;
 }
 
+#userInfo {
+    margin-top: 5%;
+    color: greenyellow;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    width: 50%; 
+}
+
+
+#rankingTable{
+    color: greenyellow;
+    display: grid;
+}
+
+#rankImg{
+    
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+th {
+    height: 30px; /* Adjust the height of the header row as needed */
+}

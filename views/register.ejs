@@ -17,6 +17,10 @@
             <form action="/register" method="post">
 
                 <label for="name">Name:</label>
+                <% if (typeof msg !== 'undefined' && msg.name) { %>
+                    <br>
+                    <%= msg.name %>
+                <% } %>
                 <br>
                 <input type="text" id="name" name="name" required>
     
@@ -24,13 +28,21 @@
                 <br>
 
                 <label for="email">Email:</label>
+                <% if (typeof msg !== 'undefined' && msg.email) { %>
+                    <br>
+                    <%= msg.email %>
+                <% } %>
                 <br>
                 <input type="email" id="email" name="email" required>
                 
                 <br>
                 <br>
-                <%= typeof msg !== 'undefined' ? password : '' %>
+                
                 <label for="password">Password:</label>
+                <% if (typeof msg !== 'undefined' && msg.password) { %>
+                    <br>
+                    <%= msg.password %>
+                <% } %>
                 <br>
                 <input type="password" id="password" name="password" required>
     

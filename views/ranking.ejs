@@ -1,0 +1,50 @@
+<!-- ranking.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/script.js"></script>
+    <title>Ranking Page</title>
+</head>
+<body>
+    <div class="userInfo" id="userInfo" name="userInfo">
+        <h1><%= content.msg %></h1>
+    </div>
+    <div class="rankingTable" id="rankingTable">
+        <div class="rankImg"  id="rankImg">
+            <img src="/ranking.png">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Successful Logins</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < content.table.length; i++) { %>
+                    <tr>
+                        <td><%= content.table[i].name %></td>
+                        <td><%= content.table[i].entrenceCounter %></td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Example: Receive an update event from the server
+        socket.on('updateEvent', (data) => {
+            console.log('Received update event:', data.message);
+            document.write(Math.random());
+        });
+    </script>
+</body>
+</html>
