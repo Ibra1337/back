@@ -44,6 +44,7 @@ th, td {
 #rankingTable{
     color: greenyellow;
     display: grid;
+    justify-content: center;
 }
 
 #rankImg{
