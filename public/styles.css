@@ -43,12 +43,13 @@ th, td {
 
 #rankingTable{
     color: greenyellow;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #rankImg{
-    
-    margin-right: auto;
+
     margin-top: 5%;
 }
 

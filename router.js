@@ -1,17 +1,17 @@
-
 const express = require('express');
-const controller = require('./controller');
+const loginController = require('./controllers/loginController');
+const registerController = require('./controllers/registerController')
 
 const router = express.Router();
 
-router.get('/register', controller.get_register);
-router.post('/register', controller.post_register);
-router.get('/login' , controller.get_login);
-router.post('/login' , controller.post_login);
-router.get('/ranking' , controller.get_ranking );
-router.get('/api/getData' , controller.api_getData)
+router.get('/register', registerController.get);
+router.post('/register', registerController.post);
 
-module.exports = 
-    {
-        router
-    };
+router.get('/login', loginController.get);
+router.post('/login', loginController.post);
+
+router.get('/ranking', loginController.get_ranking);
+
+module.exports = {
+    router
+};
