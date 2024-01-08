@@ -44,14 +44,15 @@
                 console.log('Client connected');
             })
         
-        // Example: Receive an update event from the server
+
         socket.on('updateEvent', (data) => {
             updateTableContent(data)
+            console.log("data" , data)
         });
 
         function updateTableContent(data) {
             const tableBody = document.querySelector('#rankTable');
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = ''; 
 
             const headerRow = document.createElement('tr');
             headerRow.innerHTML = `
