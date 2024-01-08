@@ -9,6 +9,11 @@
     <title>Ranking Page</title>
 </head>
 <body>
+    <div class="topBar" id="topBar" name="topBar">
+        <button id="logOff" name ="logOff">log off</button>
+
+
+    </div>
     <div class="userInfo" id="userInfo" name="userInfo">
         <h1><%= content.msg %></h1>
     </div>
@@ -35,19 +40,54 @@
         </table>
     </div> 
 
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" ></script>
     <script>
         const socket = io('http://localhost:8080' );
 
             socket.on('connect' , () => 
             {
-                console.log('Client connected');
+                document.console.log('Client connected');
+                document.cookie = "USR=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            
             })
         
-
+        
         socket.on('updateEvent', (data) => {
             updateTableContent(data)
-            console.log("data" , data)
+            console.log('data: ', data )
+        });
+
+        function updateTableContent(data) {
+            const tableBody = document.querySelector('#rankingTable');
+            tableBody.innerHTML = ''; 
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+                <th>User</th>
+                <th>Successful Logins</th>
+            `;
+            tableBody.appendChild(headerRow);
+
+            data.forEach(rowData => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${rowData.name}</td>
+                    <td>${rowData.entrenceCounter}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+
+        const logOffButton = document.getElementById('logOff');
+
+        logOffButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('log Off');
+
+
+            document.cookie = "TC=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            
+            window.location.href = '/login';
         });
 
         function updateTableContent(data) {
@@ -74,5 +114,6 @@
         
         
     </script>
+
 </body>
 </html>

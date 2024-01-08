@@ -20,20 +20,13 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 server.listen(8080)
+
 const db = dbHandler.initialize();
 
 app.use(async (req, res, next) => {
     req.db = db;
     next();
 });
-
-const timestampToUpdate = new Date('2023-01-01T12:00:00Z').getTime(); 
-setInterval(() => {
-    const currentTime = Date.now();
-    if (currentTime >= timestampToUpdate) {
-        io.emit('updateEvent', { message: 'Update has occurred!' });
-    }
-}, 3000); 
 
 io.on('connection', (socket) => {
     console.log('A user connected');
@@ -42,6 +35,16 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
+
+
+const timestampToUpdate = new Date('2023-01-01T12:00:00Z').getTime(); 
+setInterval(async() => {
+    
+    top5 = await dbHandler.getTop5(db)
+    io.emit('updateEvent', top5 );
+    
+}, 3000); 
+
 
 console.log( __dirname + '/public');
 
@@ -54,7 +57,7 @@ next();
 });
 app.get("/" , async(req, res) =>
 {
-    if (req.cookies) {
+    if (req.cookies.TC) {
         const verified = jwt.verify(req.cookies.TC , secretKey);
         const userdto = verified.user;
         const foundUser = await dbHandler.contains(db,
@@ -70,7 +73,7 @@ app.get("/" , async(req, res) =>
                 res.cookie('TC', token, { httpOnly: true });
                 res.redirect('/ranking');
             }
-        console.log('session existas')
+        
     } else {
         console.log('session does not exists')
         res.redirect("/register");
