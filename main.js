@@ -54,7 +54,7 @@ next();
 });
 app.get("/" , async(req, res) =>
 {
-    if (req.cookies) {
+    if (req.cookies.TC) {
         const verified = jwt.verify(req.cookies.TC , secretKey);
         const userdto = verified.user;
         const foundUser = await dbHandler.contains(db,

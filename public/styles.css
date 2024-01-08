@@ -1,6 +1,8 @@
 
 body {
     background-color: black;
+    margin: auto
+    ;
 }
 
 #baner {
@@ -12,6 +14,20 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+#topBar {
+    background: linear-gradient(to bottom, #444, #110f0fc4); 
+    padding: 10px;
+    text-align: right;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 5%;
+}
+.topBar.a {
+    margin-right: 3%;
+    height: 8%;
 }
 
 #userInfo {
@@ -39,6 +55,7 @@ th, td {
     text-align: center;
     width: 50%; 
 }
+
 
 
 #rankingTable{
