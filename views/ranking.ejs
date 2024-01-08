@@ -41,13 +41,13 @@
         </table>
     </div> 
 
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" ></script>
     <script>
         const socket = io('http://localhost:8080' );
 
             socket.on('connect' , () => 
             {
-                console.log('Client connected');
+                document.console.log('Client connected');
                 document.cookie = "USR=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
             
             })
@@ -55,11 +55,11 @@
         
         socket.on('updateEvent', (data) => {
             updateTableContent(data)
-            console.log('data')
+            console.log('data: ', data )
         });
 
         function updateTableContent(data) {
-            const tableBody = document.querySelector('#rankTable');
+            const tableBody = document.querySelector('#rankingTable');
             tableBody.innerHTML = ''; 
             const headerRow = document.createElement('tr');
             headerRow.innerHTML = `
@@ -78,18 +78,6 @@
             });
         }
 
-        
-        
-    </script>
-    <script>
-        function listCookies() {
-            var theCookies = document.cookie.split(';');
-            var aString = '';
-            for (var i = 1 ; i <= theCookies.length; i++) {
-                aString += i + ' ' + theCookies[i-1] + "\n";
-            }
-            return aString;
-        }
 
         const logOffButton = document.getElementById('logOff');
 
@@ -97,7 +85,6 @@
             event.preventDefault();
             console.log('log Off');
 
-            console.log(listCookies())
 
             document.cookie = "TC=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
             
