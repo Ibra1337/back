@@ -6,6 +6,7 @@ const dbHandler = require('./dbHandler')
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const cors = require('cors')
 
 const app = express();
 const server = http.createServer(app);
@@ -14,6 +15,8 @@ const io = socketIO(server);
 let secretKey = fs.readFileSync('./theBestSecuredPrivateKeyEver', 'utf8');
 
 app.use(cookieParser());
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -37,13 +40,17 @@ io.on('connection', (socket) => {
 });
 
 
-const timestampToUpdate = new Date('2023-01-01T12:00:00Z').getTime(); 
-setInterval(async() => {
-    
-    top5 = await dbHandler.getTop5(db)
-    io.emit('updateEvent', top5 );
-    
-}, 3000); 
+let timestampToUpdate = new Date('2023-01-01T12:00:00Z').getTime(); 
+
+setInterval(async () => {
+    const currentTime = Date.now();
+    if (currentTime >= timestampToUpdate) {
+        const top5 = await dbHandler.getTop5(db);
+
+
+        io.emit('updateEvent', top5);
+    }
+}, 1000);
 
 
 console.log( __dirname + '/public');
